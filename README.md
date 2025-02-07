@@ -1,8 +1,28 @@
+# Multi-modal RAG
+
+## Table of Contents
+1. [Introduction](#multi-modal-rag)
+2. [Approaches](#approaches)
+   - [Option 1](#option-1)
+   - [Option 2](#option-2)
+   - [Option 3 (Our Choice)](#option-3-our-choice)
+3. [Architecture Design](#architecture-design)
+   - [Data Extraction Code Example](#data-extraction-code-example)
+4. [Tools Used](#tools-used)
+5. [Demo and Output](#demo-and-output)
+   - [Checking Retrieval](#checking-retrieval)
+   - [Checking RAG Pipeline](#checking-rag-pipeline)
+6. [User Interface](#user-interface)
+7. [Model Enhancement](#model-enhancement)
+8. [References](#references)
+7. [References](#references)
+
 ## Multi-modal RAG
 Many documents contain a mixture of content types, including text and images. However, information captured in images is often lost in most RAG applications.
 
 With the emergence of multimodal LLMs like GPT-4V, we can now leverage images in RAG effectively. Below are three possible approaches:
 
+## Approaches
 ### Option 1:
 - Use multimodal embeddings (such as CLIP) to embed images and text.
 - Retrieve both using similarity search.
@@ -26,7 +46,7 @@ We have chosen **Option 3** as it allows for efficient image-text integration wh
 3. Embed and retrieve image summaries with a reference to the raw image.
 4. Pass raw images, tables, and text chunks to a multimodal LLM for answer synthesis.
 
-   ![image](https://github.com/user-attachments/assets/67f88c56-d3f7-41b3-84cd-244b9ae62b2d)
+![image](https://github.com/user-attachments/assets/67f88c56-d3f7-41b3-84cd-244b9ae62b2d)
 
 ### Data Extraction Code Example:
 ```python
@@ -39,6 +59,7 @@ raw_pdf_elements = partition_pdf(
     extract_image_block_output_dir="extracted_data",  # optional - only works when ``extract_image_block_to_payload=False``
 )
 ```
+
 After partitioning the PDF, we obtained:
 - **83 text chunks** as narrative text.
 - **4 tables**.
@@ -76,13 +97,16 @@ To validate the RAG pipeline, we ensured that:
 - Image summaries were embedded and retrieved with high accuracy.
 - The system successfully synthesized answers by combining text and image data.
 
-**Note:** The **Groq Cloud API** does not support multi-image retrieval for generation. While we successfully retrieved multiple images, the open-source vLLM used only allows one image per request in the preview release. Requests with multiple images will return a **400 error**. 
-![image](https://github.com/user-attachments/assets/919e432c-17ac-45c7-bdc2-f3a0fa3768a6)
+## User Interface
+To improve user confidence in the retrieval system, we implemented an option to display the retrieved context with the final answer. This feature allows users to verify the source of information and ensure accuracy.
+![image](https://github.com/user-attachments/assets/7f1c6287-6223-450e-bbf8-9f6b796dda5a)
 
 
-**Alternative Approach:** To support multi-image retrieval for generation, alternative models such as **OpenAI (GPT-4V)** and **Gemini** can be used, as they support processing multiple images in a single request.
+The UI, built using **Gradio**, provides:
+- A toggle option to show or hide the retrieved context.
+- A structured view of text, tables, and images retrieved.
 
-Our evaluations confirm that the pipeline effectively retrieves and processes multimodal content, providing accurate and meaningful results as found on the original paper after eyeballing the retrieved docs to searching with the paper.
+This enhancement ensures transparency in retrieval and improves trust in the model's responses.
 
 ## Model Enhancement
 To address existing challenges and improve retrieval accuracy, we propose integrating **Agentic RAG**, which leverages autonomous agent-based methods for better query understanding and document synthesis. **Agentic RAG** can:
@@ -93,8 +117,10 @@ To address existing challenges and improve retrieval accuracy, we propose integr
 - Improve multi-step reasoning and contextual awareness in multimodal retrieval tasks **ReAct Method**.
 
 By integrating **Agentic RAG / CorrectiveRAG**, we can overcome retrieval limitations and ensure that both textual and visual content contribute effectively to the final response generation.
-![image](https://github.com/user-attachments/assets/830223f2-322e-47cc-8381-2c3dc44da0d1)
 
-For more about agents (my github repo for implementing agentic patterns from scratch)[https://github.com/mohamedsheded/Agentic-design-patterns]
-for Agentic RAG notebook (my repo)[https://github.com/mohamedsheded/LangGraph-projects/tree/main/Agentic%20Rag]
+## References
+[LangChain Blogpost](https://blog.langchain.dev/semi-structured-multi-modal-rag/)
 
+For more about agents: [My GitHub repo for implementing agentic patterns](https://github.com/mohamedsheded/Agentic-design-patterns)
+
+For Agentic RAG notebook: [My GitHub repo](https://github.com/mohamedsheded/LangGraph-projects/tree/main/Agentic%20Rag)
