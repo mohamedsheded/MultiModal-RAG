@@ -81,6 +81,11 @@ We verified the system's retrieval performance using the following five queries:
 5. **Show me a picture that shows the difference between Scaled Dot-Product Attention and Multi-Head Attention.**
 
 All queries were retrieved correctly after reviewing the original paper.
+**Note:** The **Groq Cloud API** does not support multi-image retrieval for generation. While we successfully retrieved multiple images, the open-source vLLM used only allows one image per request in the preview release. Requests with multiple images will return a **400 error**. 
+![image](https://github.com/user-attachments/assets/919e432c-17ac-45c7-bdc2-f3a0fa3768a6)
+
+**Alternative Approach:** To support multi-image retrieval for generation, alternative models such as **OpenAI (GPT-4V)** and **Gemini** can be used, as they support processing multiple images in a single request.
+Our evaluations confirm that the pipeline effectively retrieves and processes multimodal content, providing accurate and meaningful results as found on the original paper after eyeballing the retrieved docs to searching with the paper.
 
 ![image](https://github.com/user-attachments/assets/c14e145d-522e-4913-a910-8a77ac662192)
 
