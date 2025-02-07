@@ -81,12 +81,6 @@ We verified the system's retrieval performance using the following five queries:
 5. **Show me a picture that shows the difference between Scaled Dot-Product Attention and Multi-Head Attention.**
 
 All queries were retrieved correctly after reviewing the original paper.
-**Note:** The **Groq Cloud API** does not support multi-image retrieval for generation. While we successfully retrieved multiple images, the open-source vLLM used only allows one image per request in the preview release. Requests with multiple images will return a **400 error**. 
-![image](https://github.com/user-attachments/assets/919e432c-17ac-45c7-bdc2-f3a0fa3768a6)
-
-**Alternative Approach:** To support multi-image retrieval for generation, alternative models such as **OpenAI (GPT-4V)** and **Gemini** can be used, as they support processing multiple images in a single request.
-Our evaluations confirm that the pipeline effectively retrieves and processes multimodal content, providing accurate and meaningful results as found on the original paper after eyeballing the retrieved docs to searching with the paper.
-
 ![image](https://github.com/user-attachments/assets/c14e145d-522e-4913-a910-8a77ac662192)
 
 ![image](https://github.com/user-attachments/assets/9f3ca41c-159a-4a64-b603-732fafe3641f)
@@ -103,6 +97,11 @@ To validate the RAG pipeline, we ensured that:
 - The multimodal LLM correctly generated summaries for images.
 - Image summaries were embedded and retrieved with high accuracy.
 - The system successfully synthesized answers by combining text and image data.
+**Note:** The **Groq Cloud API** does not support multi-image retrieval for generation. While we successfully retrieved multiple images, the open-source vLLM used only allows one image per request in the preview release. Requests with multiple images will return a **400 error**. 
+![image](https://github.com/user-attachments/assets/919e432c-17ac-45c7-bdc2-f3a0fa3768a6)
+
+**Alternative Approach:** To support multi-image retrieval for generation, alternative models such as **OpenAI (GPT-4V)** and **Gemini** can be used, as they support processing multiple images in a single request.
+Our evaluations confirm that the pipeline effectively retrieves and processes multimodal content, providing accurate and meaningful results as found on the original paper after eyeballing the retrieved docs to searching with the paper.
 
 ## User Interface
 To improve user confidence in the retrieval system, we implemented an option to display the retrieved context with the final answer. This feature allows users to verify the source of information and ensure accuracy.
