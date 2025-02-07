@@ -19,7 +19,7 @@
 ## Multi-modal RAG
 Many documents contain a mixture of content types, including text and images. However, information captured in images is often lost in most RAG applications.
 
-With the emergence of multimodal LLMs like GPT-4V, we can now leverage images in RAG effectively. Below are three possible approaches:
+With the emergence of multimodal LLMs, we can now leverage images in RAG effectively. Below are three possible approaches:
 
 ## Approaches
 ### Option 1:
@@ -33,7 +33,7 @@ With the emergence of multimodal LLMs like GPT-4V, we can now leverage images in
 - Pass text chunks to an LLM for answer synthesis.
 
 ### Option 3 (Our Choice):
-- Use a multimodal LLM (such as GPT-4V, LLaVA, or FUYU-8b) to produce text summaries from images.
+- Use a multimodal LLM to produce text summaries from images.
 - Embed and retrieve image summaries with a reference to the raw image.
 - Pass raw images and text chunks to a multimodal LLM for answer synthesis.
 
