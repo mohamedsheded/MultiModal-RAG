@@ -15,8 +15,7 @@
 6. [User Interface](#user-interface)
 7. [Model Enhancement](#model-enhancement)
 8. [References](#references)
-7. [References](#references)
-
+   
 ## Multi-modal RAG
 Many documents contain a mixture of content types, including text and images. However, information captured in images is often lost in most RAG applications.
 
@@ -70,7 +69,7 @@ After partitioning the PDF, we obtained:
 - **Groq Cloud**: For LLM/vLLM processing.
 - **Chroma DB**: As a vector database.
 - **Gradio**: For building an interactive UI tool.
-
+- **Models** : For summarizing tables/Text `gemma2-9b-it` for summarizing Images `llama-3.2-90b-vision-preview` or `llama-3.2-11b-vision-preview`
 ## Demo and Output
 ### Checking Retrieval
 We verified the system's retrieval performance using the following five queries:
@@ -86,8 +85,11 @@ All queries were retrieved correctly after reviewing the original paper.
 ![image](https://github.com/user-attachments/assets/c14e145d-522e-4913-a910-8a77ac662192)
 
 ![image](https://github.com/user-attachments/assets/9f3ca41c-159a-4a64-b603-732fafe3641f)
+### Checking Generation
+![image](https://github.com/user-attachments/assets/e436511c-ab2c-4f50-8270-904280f0f261)
 
-[Demo](https://drive.google.com/file/d/1Yy8-hUZhNN-RxgNnrboQtUB3JhhFH_UT/view?usp=sharing)
+[Demo on provided](https://drive.google.com/file/d/1Yy8-hUZhNN-RxgNnrboQtUB3JhhFH_UT/view?usp=sharing)
+
 [Demo-more examples](https://drive.google.com/file/d/1cMSDoiCxOldLwJOpnRhAW14MVL4HIszD/view?usp=sharing)
 
 ### Checking RAG Pipeline
@@ -117,6 +119,7 @@ To address existing challenges and improve retrieval accuracy, we propose integr
 - Improve multi-step reasoning and contextual awareness in multimodal retrieval tasks **ReAct Method**.
 
 By integrating **Agentic RAG / CorrectiveRAG**, we can overcome retrieval limitations and ensure that both textual and visual content contribute effectively to the final response generation.
+![image](https://github.com/user-attachments/assets/0c4567e0-d66b-4c26-80ae-70a9239a7ad7)
 
 ## References
 [LangChain Blogpost](https://blog.langchain.dev/semi-structured-multi-modal-rag/)
